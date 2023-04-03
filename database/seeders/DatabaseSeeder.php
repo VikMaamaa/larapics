@@ -6,6 +6,7 @@ namespace Database\Seeders;
 
 use App\Models\Image;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Storage;
 
 class DatabaseSeeder extends Seeder
 {
@@ -23,6 +24,18 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
 
-        Image::factory(6)->create();
+        $images = Storage::allFiles('images');
+
+        foreach ($images as $image) {
+            if(strpos($image, ".DS_Store")) continue ;
+
+            Image::factory()->create([
+                    'file' => $image
+                ]);
+
+
+
+        }
+
     }
 }
