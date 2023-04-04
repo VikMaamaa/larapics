@@ -2,6 +2,7 @@
 
 namespace App\View\Components;
 
+use Illuminate\Support\HtmlString;
 use Illuminate\View\Component;
 
 class Alert extends Component
@@ -35,6 +36,15 @@ class Alert extends Component
 
     public function validType() {
         return in_array($this->type, $this->types)? $this->type : 'info';
+    }
+
+    public function link($text, $target = '#'){
+        return  new HtmlString('<a href="#" class="alert-link">'.$text.'</a>');
+    }
+
+    public function icon($url = null) {
+        $icon = $url ?? asset("icons/icon-{$this->type}.svg");
+        return new HtmlString("<img class='me-2' src='{$icon}'");
     }
 
     /**
