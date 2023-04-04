@@ -19,7 +19,7 @@
             Success
         </x-slot> --}}
 
-        {{ $component->icon() }}
+        {{-- {{ $component->icon() }} --}}
         <p class="mb-0">Data has been removed. {{ $component->link('Undo')}}</p>
     </x-alert>
 </body>
