@@ -14,6 +14,6 @@
     {{-- <x-icon  :src="$icon"/>
     <x-ui.button /> --}}
 
-    <x-alert  type="danger" id="my-alert" class="mt-4"/>
+    <x-alert  dismissible="true" type="danger" id="my-alert" class="mt-4"/>
 </body>
 </html>
