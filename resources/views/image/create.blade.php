@@ -1,4 +1,5 @@
-<h1>Upload new image</h1>
+<x-layout title="Upload new image">
+    <h1>Upload new image</h1>
 
 
 <x-form action="{{ route('images.store') }}" method="POST" enctype="multipart/form-data">
@@ -20,3 +21,4 @@
 
     <button type="submit">Upload</button>
 </x-form>
+</x-layout>

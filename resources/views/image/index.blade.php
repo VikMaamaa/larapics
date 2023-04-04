@@ -1,4 +1,5 @@
-<h1>All images</h1>
+<x-layout title="Discover free images">
+    <h1>All images</h1>
 
 <a href="{{ route('images.create')}}">Upload Image</a>
 
@@ -22,3 +23,4 @@
         </div>
     </div>
 @endforeach
+</x-layout>
