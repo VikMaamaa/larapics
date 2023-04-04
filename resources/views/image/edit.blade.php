@@ -1,9 +1,9 @@
 <h1>Edit image</h1>
 
 
-<form action="{{ $image->route('update') }}" method="POST" >
-    @csrf
-    @method('PUT')
+<x-form action="{{ $image->route('update') }}" method="PUT" >
+    {{-- @csrf
+    @method('PUT') --}}
     <div>
         <img src="{{ $image->fileUrl()}}" alt="{{$image->title}}" width="400">
     </div>
@@ -23,4 +23,4 @@
     </div>
 
     <button type="submit">Update</button>
-</form>
+</x-form>
