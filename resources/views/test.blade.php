@@ -14,6 +14,11 @@
     {{-- <x-icon  :src="$icon"/>
     <x-ui.button /> --}}
 
-    <x-alert  dismissible="true" type="danger" id="my-alert" class="mt-4"/>
+    <x-alert  dismissible="true" type="success" id="my-alert" class="mt-4">
+        {{-- <x-slot:title>
+            Success
+        </x-slot> --}}
+        <p class="mb-0">Data has been sent</p>
+    </x-alert>
 </body>
 </html>

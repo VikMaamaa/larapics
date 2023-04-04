@@ -12,6 +12,8 @@ class Alert extends Component
 
     public $dismissible;
 
+    public $message;
+
     protected $types = [
         'success',
         'danger',
@@ -24,8 +26,9 @@ class Alert extends Component
      *
      * @return void
      */
-    public function __construct($type = 'info', $dismissible = false)
+    public function __construct($message = '',$type = 'info', $dismissible = false)
     {
+        $this->message = $message;
         $this->dismissible = $dismissible;
         $this->type = $type;
     }
