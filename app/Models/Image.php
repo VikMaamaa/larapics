@@ -37,4 +37,8 @@ class Image extends Model
     public function permalink() {
         return $this->slug ? route("images.show", $this->slug) : '#';
     }
+
+    public function route($method, $key = 'id') {
+        return route("images.{$method}", $this->$key);
+    }
 }
