@@ -12,20 +12,21 @@ class ImageController extends Controller
 
     public function __construct()
     {
+        $this->middleware(['auth']);
         $this->authorizeResource(Image::class);
     }
 
     public function index() {
 
-        $images = Image::published()->latest()->paginate(15)->withQueryString();
+        $images = Image::visibleFor(request()->user())->latest()->paginate(15)->withQueryString();
 
         return view('image.index', compact('images'));
     }
 
 
-    public function show(Image $image) {
-        return view('image.show', compact('image'));
-    }
+    // public function show(Image $image) {
+    //     return view('image.show', compact('image'));
+    // }
 
     public function create() {
         return view('image.create');
