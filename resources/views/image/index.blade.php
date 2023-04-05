@@ -17,17 +17,22 @@
                         <img src="{{ $image->fileUrl() }}" alt="{{ $image->title }}"  class="card-img-top">
                     </a>
 
+                    {{-- Auth::check() && Auth::user()->can('update', $image) --}}
+                    @can ('update', $image)
                     <div class="photo-buttons">
-                       <div>
-                        <a href="{{ $image->route('edit')}}" class="btn btn-sm btn-info me-2">Edit</a>
-                        <x-form action="{{$image->route('destroy')}}" method="DELETE" >
-                        {{-- @csrf
-                        @method('DELETE') --}}
-                        <button class="btn btn-sm btn-danger" type="submit" onclick="return confirm('Are you sure?')">Delete</button>
-                        </x-form>
-                       </div>
+                        <div>
+                         <a href="{{ $image->route('edit')}}" class="btn btn-sm btn-info me-2">Edit</a>
+                         <x-form action="{{$image->route('destroy')}}" method="DELETE" >
+                         {{-- @csrf
+                         @method('DELETE') --}}
+                         <button class="btn btn-sm btn-danger" type="submit" onclick="return confirm('Are you sure?')">Delete</button>
+                         </x-form>
+                        </div>
 
-                    </div>
+                     </div>
+                    @endcan
+
+
                 </div>
             </div>
             @endforeach

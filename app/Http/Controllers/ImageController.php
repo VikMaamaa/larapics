@@ -9,6 +9,12 @@ use Illuminate\Support\Facades\Gate;
 
 class ImageController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->authorizeResource(Image::class);
+    }
+
     public function index() {
 
         $images = Image::published()->latest()->paginate(15)->withQueryString();
@@ -38,8 +44,11 @@ class ImageController extends Controller
         //     abort(403, "Access denied");
         // }
 
+        // if(request()->user()->cannot('update', $image)) {
+        //     abort(403, "Access denied");
+        // }
 
-        $this->authorize('update', $image);
+        // $this->authorize('update', $image);
 
         return view('image.edit', compact('image'));
     }
@@ -50,9 +59,9 @@ class ImageController extends Controller
     }
 
     public function destroy(Image $image){
-        if(Gate::denies('delete', $image)){
-            abort(403, "Access denied");
-        }
+        // if(Gate::denies('delete', $image)){
+        //     abort(403, "Access denied");
+        // }
 
         $image->delete();
         return to_route('images.index')->with('message', "Images has been removed successfully");
