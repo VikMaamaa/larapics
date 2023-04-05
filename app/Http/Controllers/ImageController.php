@@ -26,11 +26,17 @@ class ImageController extends Controller
 
     public function store(ImageRequest $request)
     {
+        // dd(request()->user()->id, $request->getData());
         Image::create($request->getData());
         return to_route('images.index')->with('message', "Images has been uploaded successfully");
     }
 
     public function edit(Image $image) {
+        // dd(request()->user()->id, $image->user_id);
+        if(!request()->user() || (request()->user()->id  !== $image->user_id)){
+            abort(403, "Access denied");
+        }
+
         return view('image.edit', compact('image'));
     }
 
@@ -40,6 +46,10 @@ class ImageController extends Controller
     }
 
     public function destroy(Image $image){
+        if(!request()->user() || (request()->user()->id  !== $image->user_id)){
+            abort(403, "Access denied");
+        }
+
         $image->delete();
         return to_route('images.index')->with('message', "Images has been removed successfully");
     }
