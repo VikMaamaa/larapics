@@ -2,11 +2,9 @@
 
 namespace App\Providers;
 
-use App\Enums\Role;
-use App\Models\Image;
-use App\Models\User;
+
 use Illuminate\Pagination\Paginator;
-use Illuminate\Support\Facades\Gate;
+// use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -30,22 +28,6 @@ class AppServiceProvider extends ServiceProvider
     {
         Paginator::useBootstrapFive();
 
-        Gate::define('update-image', function(User $user, Image $image){
-            // dump('update-image');
-            return $user->id ===  $image->user_id || $user->role === Role::Editor;
-        });
 
-        Gate::define('delte-image', function(User $user, Image $image){
-            // dump('delete-image');
-            return $user->id ===  $image->user_id;
-        });
-
-
-        Gate::before(function($user, $ability) {
-            // dump('before Gate');
-            if($user->role === Role::Admin) {
-                return true;
-            }
-        });
     }
 }
