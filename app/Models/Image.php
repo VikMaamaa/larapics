@@ -12,6 +12,11 @@ class Image extends Model
 
     protected $fillable = ['title', 'file', 'dimension', 'user_id', 'slug'];
 
+
+    public function user() {
+        return $this->belongsTo(User::class);
+    }
+
     public static function makeDirectory() {
         $subFolder =  'images/' . date('Y/m/d');
 
@@ -50,6 +55,10 @@ class Image extends Model
         }
 
         return $slug;
+    }
+
+    public function uploadDate() {
+        return $this->created_at->diffForHumans();
     }
 
     protected static function booted(){
